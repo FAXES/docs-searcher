@@ -36,7 +36,7 @@ module.exports = async function(app, connection, bot, faxstore) {
                 let query = interaction.options.get("query")?.value;
                 if(query) {
                     let docsFetch = await fetch(`https://${docsConfig.docsDomain}/api/v2/search?q=${encodeURIComponent(query)}`)
-                    let docsJson = await docsFetch.json().catch((error) => {return console.error(err)});
+                    let docsJson = await docsFetch.json().catch((error) => {return console.error(error)});
                     if(!docsJson) return interaction.reply({content: `Search failed. Unable to get a response from the docs.\n\n- https://${docsConfig.docsDomain}`, ephemeral: true}).catch(function(_) {});
                     let desc = ``;
                     let embedDefaults = {
